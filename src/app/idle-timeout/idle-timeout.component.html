@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <mat-toolbar class="idle-timeout-toolbar">
+        <span class="idle-timeout-text">Idle Timeout</span>
+      </mat-toolbar>
+    </div>
+  </div>
+  <div class="row settings-header mt-6">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h3 class="settings-header">
+        Platform Idle Timeout Settings
+        <mat-icon
+          class="info-icon"
+          style="color: black"
+          matTooltip="Enables you to set the idle time upto which the platform will keep your session valid. On expiration of configured idle time,the session will get logged out."
+          matTooltipClass="tooltip"
+          >info</mat-icon
+        >
+      </h3>
+    </div>
+  </div>
+
+  <form
+    [formGroup]="addIdleTimeout"
+    (ngSubmit)="onFormUpdate(addIdleTimeout.value)"
+  >
+    <div class="row form-field mt-3">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label class="settings-header">Enable Idle Timeout</label>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <mat-slide-toggle
+          color="primary"
+          formControlName="enableIdleTimeout"
+        ></mat-slide-toggle>
+      </div>
+    </div>
+
+    <div class="row form-field mt-3">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label for="idleTimeoutInput" class="settings-header"
+          >Idle Timeout <span class="in-seconds-text">(in seconds)</span
+          ><mat-icon
+            class="info-icon"
+            matTooltip="Determines the amount of time the user can be idle. After that the user will be logged out."
+            matTooltipClass="tooltip"
+            >info</mat-icon
+          ></label
+        >
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="height: 20px">
+        <input type="text" formControlName="idleTimeout" />
+        <mat-error *ngIf="checkError('idleTimeout', 'pattern')"
+          >Please enter seconds in number</mat-error
+        >
+      </div>
+    </div>
+    <div class="row form-field mt-3" style="position: relative">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label class="settings-header"
+          >Timer to Logout <span class="in-seconds-text">(in seconds)</span>
+          <mat-icon
+            class="info-icon"
+            matTooltip="On Idle Timeout, user will be prompted to stay or logout from apiplatform. Time to logout determines the duration of the prompt."
+            matTooltipClass="tooltip"
+            >info</mat-icon
+          >
+        </label>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="height: 20px">
+        <input type="text" formControlName="logoutTimeout" />
+        <mat-error *ngIf="checkError('logoutTimeout', 'pattern')">
+          Please enter seconds in number
+        </mat-error>
+      </div>
+    </div>
+
+    <div class="row form-field mt-3">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <label for="pingIntervalInput" class="settings-header"
+          >Ping Interval <span class="in-seconds-text">(in seconds)</span
+          ><mat-icon
+            class="info-icon"
+            matTooltip="Determines the time interval at which the platform has to lookout for idle behaviour."
+            matTooltipClass="tooltip"
+            >info</mat-icon
+          ></label
+        >
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="height: 20px">
+        <input type="text" formControlName="pingInterval" />
+        <mat-error *ngIf="checkError('pingInterval', 'pattern')"
+          >Please enter seconds in number</mat-error
+        >
+      </div>
+    </div>
+
+    <div class="row form-field mt-3">
+      <div
+        class="col-lg-9 offset-lg-3 col-md-9 offset-md-3 col-sm-9 offset-sm-3 col-xs-9 offset-xs-3"
+      >
+        <button class="update-button">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
